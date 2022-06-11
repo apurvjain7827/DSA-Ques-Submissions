@@ -14,28 +14,22 @@
  * }
  */
 class Solution {
-    public int size(TreeNode node){
-        if(node == null){
-            return 0;
-        }
-        int ls = size(node.left);
-        int rs = size(node.right);
-        return Math.max(ls, rs) +1;
+     public boolean isBalanced(TreeNode root) {
+        if (root == null) return true;
+        return recursion(root) != -1;
     }
     
-    public boolean isBalanced(TreeNode root) {
-        if(root == null)
-            return true;
-        int ls = size(root.left);
-        int rs = size(root.right);
-        boolean leftAns = isBalanced(root.left);
-        boolean rightAns = isBalanced(root.right);
-        if(leftAns == false || rightAns == false){
-            return false;
+    public int recursion(TreeNode root) {
+        if (root == null) return 0;
+        
+        int left = recursion(root.left);
+        if (left == -1) return -1;
+        int right = recursion(root.right);
+        if (right == -1) return -1;
+        
+        if (Math.abs(left - right) > 1) {
+            return -1;
         }
-        if(ls-rs <= 1 && ls-rs >= -1){
-            return true;
-        }
-        return false;
+        return 1 + Math.max(left, right);
     }
 }
