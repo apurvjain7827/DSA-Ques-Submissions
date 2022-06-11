@@ -14,22 +14,40 @@
  * }
  */
 class Solution {
-     public boolean isBalanced(TreeNode root) {
-        if (root == null) return true;
-        return recursion(root) != -1;
+    public class pair{
+        TreeNode node;
+        int height;
+        boolean ans;
+        pair(){}
+        pair(TreeNode node, int height, boolean ans){
+            this.node = node;
+            this.height = height;
+            this.ans = ans;
+        }
     }
     
-    public int recursion(TreeNode root) {
-        if (root == null) return 0;
-        
-        int left = recursion(root.left);
-        if (left == -1) return -1;
-        int right = recursion(root.right);
-        if (right == -1) return -1;
-        
-        if (Math.abs(left - right) > 1) {
-            return -1;
+    public pair func(TreeNode root){
+        if(root == null){
+            return new pair(null, 0, true);
         }
-        return 1 + Math.max(left, right);
+        pair leftAns = func(root.left);
+        pair rightAns = func(root.right);
+        pair myPair = new pair();
+        myPair.node = root;
+        myPair.height = Math.max(leftAns.height, rightAns.height) + 1;
+        int a = leftAns.height;
+        int b = rightAns.height;
+        if(leftAns.ans == true && rightAns.ans == true && a-b <= 1 && a-b >= -1){
+            myPair.ans = true;
+        }
+        else{
+            myPair.ans = false;
+        }
+        return myPair;
+    }
+    
+    public boolean isBalanced(TreeNode root) {
+        pair myAns = func(root);
+        return myAns.ans;
     }
 }
