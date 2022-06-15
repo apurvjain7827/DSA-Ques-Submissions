@@ -26,8 +26,8 @@ class Solution {
     
     public List<Integer> preorderTraversal(TreeNode root) {
         if(root == null){
-            List<Integer> base = new ArrayList<>();
-            return base;
+            //List<Integer> base = ;
+            return new ArrayList<>();
         }
         List<Integer> pre = new ArrayList<>();
         Stack<pair> st = new Stack<>();
