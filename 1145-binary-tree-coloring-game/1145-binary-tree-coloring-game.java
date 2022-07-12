@@ -43,9 +43,9 @@ class Solution {
     }
     
     public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
-        // if(root == null){
-        //     return false;
-        // }
+        if(root == null){
+            return false;
+        }
         TreeNode node = getNode(root, x);
         int ls = getS(node.left);
         int rs = getS(node.right);
