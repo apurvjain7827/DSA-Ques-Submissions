@@ -14,43 +14,30 @@
  * }
  */
 class Solution {
-    public class pair{
-        TreeNode node;
-        int state;
-        pair(){}
-        pair(TreeNode node, int state){
-            this.node = node;
-            this.state = state;
-        }
-    }
-    
     public List<Integer> preorderTraversal(TreeNode root) {
-        if(root == null){
-            //List<Integer> base = ;
-            return new ArrayList<>();
-        }
-        List<Integer> pre = new ArrayList<>();
-        Stack<pair> st = new Stack<>();
-        st.push(new pair(root, 0));
-        while(st.size() != 0){
-            pair curr = st.peek();
-            if(curr.state == 0){
-                pre.add(curr.node.val);
-                curr.state++;
-            }
-            else if(curr.state == 3){
-                st.pop();
+        List<Integer> retVal = new ArrayList<>();
+        TreeNode curr = root;
+        while(curr != null){
+            if(curr.left == null){
+                retVal.add(curr.val);
+                curr = curr.right;
             }
             else{
-                if(curr.state == 1 && curr.node.left != null){
-                    st.push(new pair(curr.node.left, 0));
+                TreeNode prep = curr.left;
+                while(prep.right != null && prep.right != curr){
+                    prep = prep.right;
                 }
-                else if(curr.state == 2 && curr.node.right != null){
-                    st.push(new pair(curr.node.right, 0));
+                if(prep.right == null){
+                    retVal.add(curr.val);
+                    prep.right = curr;
+                    curr = curr.left;
                 }
-                curr.state++;
+                else{
+                    prep.right = null;
+                    curr = curr.right;
+                }
             }
         }
-        return pre;
+        return retVal;
     }
 }
