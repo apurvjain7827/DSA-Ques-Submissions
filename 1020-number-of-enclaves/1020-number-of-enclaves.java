@@ -28,8 +28,8 @@ class Solution {
         for(int i=1; i<grid.length - 1; i++){
             for(int j=1; j < grid[0].length - 1; j++){
                 if(grid[i][j] == 1){
-                    // count++;
-                    traverse(i, j, grid);
+                    count++;
+                    // traverse(i, j, grid);
                 }
             }
         }
