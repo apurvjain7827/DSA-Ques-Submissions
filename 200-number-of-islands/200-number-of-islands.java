@@ -1,38 +1,29 @@
 class Solution {
-    public int count;
-    
-    public void func(char[][] grid, int n, int m, boolean[][] vis){
-        vis[n][m] = true;
-        int r = grid.length;
-        int c = grid[0].length;
-        
-        if(n-1 >= 0 && !vis[n-1][m] && grid[n-1][m] == '1')
-        func(grid, n-1, m, vis);
-        
-        if(m+1 < c && !vis[n][m+1] && grid[n][m+1] == '1')
-        func(grid, n, m+1, vis);
-        
-        if(n+1 < r && !vis[n+1][m] && grid[n+1][m] == '1')
-        func(grid, n+1, m, vis);
-        
-        if(m-1 >= 0 && !vis[n][m-1] && grid[n][m-1] == '1')
-        func(grid, n, m-1, vis);
-        
-    }
     public int numIslands(char[][] grid) {
-        boolean[][] vis = new boolean[grid.length][grid[0].length];
-        int n = grid.length;
-        int m = grid[0].length;
-        count = 0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(!vis[i][j] && grid[i][j] == '1'){
-                    func(grid, i, j, vis);
+        int count = 0;
+        for(int i=0; i<grid.length; i++){
+            for(int j=0; j<grid[0].length; j++){
+                if(grid[i][j] == '1'){
+                    dfs(i, j, grid);
                     count++;
                 }
-                
             }
         }
         return count;
     }
+    
+    public void dfs(int i, int j, char[][] grid){
+        if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == '0'){
+            return;
+        }
+        
+        
+        grid[i][j] = '0';
+        dfs(i-1, j, grid);
+        dfs(i, j+1, grid);
+        dfs(i+1, j, grid);
+        dfs(i, j-1, grid);
+    }
+    
+    
 }
