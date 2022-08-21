@@ -1,5 +1,5 @@
 class Solution {
-    public int count = 0;
+    // public int count = 0;
     public int numEnclaves(int[][] grid) {
         // int count = 0;
         for(int i=0; i<grid.length; i++){
@@ -23,7 +23,7 @@ class Solution {
             }
         }
         
-        count = 0;
+        int count = 0;
         
         for(int i=1; i<grid.length - 1; i++){
             for(int j=1; j < grid[0].length - 1; j++){
@@ -46,7 +46,7 @@ class Solution {
         
         grid[i][j] = 0;
         
-        count++;
+        // count++;
         
         traverse(i+1, j, grid);
         traverse(i-1, j, grid);
