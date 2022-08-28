@@ -34,10 +34,9 @@ class Solution {
         }
         
         if(idx < numCourses){
-            int[] arr = {};
-            return arr;
+            return new int[] {};
         }
-            // return new int[] ;
+             
         
         return ret;
     }
