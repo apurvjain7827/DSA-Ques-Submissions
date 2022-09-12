@@ -23,13 +23,16 @@ class Solution {
             }
         }
         
-        HashSet<Integer> hs = new HashSet<>();
+        // HashSet<Integer> hs = new HashSet<>();
+        int count = 0;
         for(int i=0; i<parent.length; i++){
-            int par = find(i);
-            hs.add(par);
+            // int par = find(i);
+            // hs.add(par);
+            if(parent[i] == i)
+                count++;
         }
         
-        return hs.size();
+        return count;
     }
     
     int[] parent;
