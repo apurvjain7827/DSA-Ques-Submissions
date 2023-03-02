@@ -42,24 +42,21 @@ class Solution
     public boolean findPair(int arr[], int size, int n)
     {
         //code here.
-        int i=0;
-        int j=1;
+        int j = 0;
+        int i = 1;
         Arrays.sort(arr);
-        if(size == 1){
-            return false;
-        }
-        while(j < size && i < size && i <= j){
+        while(i < arr.length){
             if(i == j){
+                i++;
+            }
+            else if(arr[i] - arr[j] > n){
                 j++;
             }
-            else if(arr[j] - arr[i] == n){
-                return true;
-            }
-            else if(arr[j] - arr[i] > n){
+            else if(arr[i] - arr[j] < n){
                 i++;
             }
             else{
-                j++;
+                return true;
             }
         }
         
