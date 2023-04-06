@@ -28,20 +28,22 @@ class Solution
     public long countFriendsPairings(int n) 
     { 
        //code here
-       long MOD = 1000000007;
+       long mod = 1000000007;
        if(n <= 2){
-           return n;
+           return (long)n;
        }
-       long l = 2;
-       long sl = 1;
-       for(int i=3; i<=n; i++){
-           long ans = (l + ((i-1)*sl))%MOD;
-        //   System.out.println(ans);
-           sl = l;
-           l = ans;
+       long n1 = 1;
+       long n2 = 2;
+       long ans = 4;
+       long num = 3;
+       while(num <= n){
+           ans = (n2 + ((num - 1)*n1)%mod)%mod;
+           n1 = n2;
+           n2 = ans;
+           num++;
        }
        
-       return l;
+       return ans;
     }
 }    
  
