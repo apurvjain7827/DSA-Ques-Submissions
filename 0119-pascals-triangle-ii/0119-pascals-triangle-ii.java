@@ -25,11 +25,11 @@ class Solution {
         base.add(1);
         int[][] dp = new int[rowIndex + 1][rowIndex + 1];
         // int[][] dp = new int[10][10];
-        for(int i=0; i<dp.length; i++){
-            for(int j=0; j<dp[0].length; j++){
-                dp[i][j] = -1;
-            }
-        }
+        // for(int i=0; i<dp.length; i++){
+        //     for(int j=0; j<dp[0].length; j++){
+        //         dp[i][j] = -1;
+        //     }
+        // }
 
         // for(int i=0; i<5; i++){
         //     for(int j=0; j<=i; j++){
@@ -51,7 +51,7 @@ class Solution {
             return 1;
         }
 
-        if(dp[row][col] != -1){
+        if(dp[row][col] != 0){
             return dp[row][col];
         }
 
